@@ -1,16 +1,16 @@
 #include <stdio.h>
 /**
-* main - Prints the alphabet.
-*
-* Return: Always 0 (Success)
-*/
+ * main - this is the forced comment i need to add
+ * Return: 0 (Success)
+ */
+
 int main(void)
 {
-char alp = "a";
-while (alp != '{')
+char alphabet = 'a';
+while (alphabet != '{')
 {
-putchar(alp);
-alp++;
+putchar(alphabet);
+alphabet++;
 }
 putchar('\n');
 return (0);
