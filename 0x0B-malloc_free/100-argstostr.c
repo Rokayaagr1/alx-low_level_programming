@@ -1,33 +1,38 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "main.h"
 
 /**
- * create_array - function that creates an array of chars,
- * and initializes it with a specific char.
- * @size: size of array
- * @c: fill array values with this char
- * Return: pointer to array
+ * argstostr - write a func that concat all the arguments of your prog
+ * @ac: input
+ * @av: input
+ * Return: ptr or NULL if ac=0 or av=0 or if it fails
  */
 
-char *create_array(unsigned int size, char c)
+char *argstostr(int ac, char **av)
 {
-	char *arr;
-	int i = 0;
+	char *p_av;
+	int i, j, x = 0, len = 0;
 
-	if (size <= 0) /* validate size input */
+	if (ac == 0 || av == NULL)
 		return (NULL);
-	arr = malloc(sizeof(char) * size); /* allocate memory */
-
-	if (arr == NULL) /* validate memory */
-		return (NULL);
-
-	while (i < (int)size) /* set array values to char c */
+	for (i = 0; i < ac; i++)
 	{
-		*(arr + i) = c;
-		i++;
+		j = 0;
+		while (av[i][j])
+		{
+			len++;
+			j++;
+		}
 	}
-	*(arr + i) = '\0';
+	p_av = (char *)malloc(sizeof(char) * len + ac + 1);
+	if (p_av == NULL)
+		return (NULL);
+	for (i = 0; i < ac; i++)
+	{
+		j = 0;
+		while (av[i][j])
+			*(p_av + x++) = av[i][j++];
+		*(p_av + x++) = '\n';
+	}
+	return (p_av);
 
-	return (arr);
 }
